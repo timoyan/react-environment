@@ -23,3 +23,9 @@ This is scaffolding project
 
 `npm run start:dev`
 `npm run build`
+
+`Prettier - Code formatter`
+`https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode`
+
+`ESLint`
+`https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint`
