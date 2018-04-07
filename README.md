@@ -3,6 +3,8 @@ This is scaffolding project
 
 `yarn init`
 `yarn add react react-dom`
+`yarn add react-router-dom`
+
 `yarn add webpack --dev`
 `yarn add webpack-cli --dev`
 `yarn add webpack-dev-server --dev`
@@ -19,7 +21,12 @@ This is scaffolding project
 `yarn add node-sass --dev`
 
 
+
 `npx webpack --config webpack.config.js`
 
 `npm run start:dev`
 `npm run build`
+
+
+`Auto Import - ES6, TS, JSX, TSX`
+`https://marketplace.visualstudio.com/items?itemName=NuclleaR.vscode-extension-auto-import`
