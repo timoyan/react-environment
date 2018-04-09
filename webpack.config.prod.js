@@ -19,20 +19,18 @@ module.exports = merge(baseConfig, {
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
           use: [
             {
               loader: "css-loader",
               options: {
-                minimize: true,
-                sourceMap: true
+                minimize: true
               }
             },
             {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true
-              }
+              loader: "postcss-loader"
+            },
+            {
+              loader: "sass-loader"
             }
           ]
         })
@@ -40,6 +38,9 @@ module.exports = merge(baseConfig, {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("production")
+    }),
     new CleanWebpackPlugin(path.resolve(__dirname, "dist")),
     new UglifyJsPlugin({
       sourceMap: true

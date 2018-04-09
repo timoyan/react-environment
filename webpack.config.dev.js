@@ -43,7 +43,7 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("dev")
+      "process.env.NODE_ENV": JSON.stringify("development")
     }),
     new CleanWebpackPlugin(path.resolve(__dirname, "dist")),
     new HtmlWebpackPlugin({
