@@ -1,25 +1,21 @@
 const path = require("path");
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const baseConfig = require("./webpack.config.base");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
-  entry: "./src/index.js",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
-  },
+module.exports = merge(baseConfig, {
+  devtool: "eval-source-map",
+  mode: "development",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 8081,
     historyApiFallback: true,
     open: true
   },
-  target: "web",
   module: {
     rules: [
-      { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader" },
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
       {
         test: /\.(scss)$/,
         use: [
@@ -46,13 +42,13 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("dev")
+    }),
     new CleanWebpackPlugin(path.resolve(__dirname, "dist")),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
-      title: "Custom template"
+      title: "Development"
     })
-  ],
-  resolve: {
-    extensions: [".js", ".jsx", ".scss"]
-  }
-};
+  ]
+});
