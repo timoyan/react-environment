@@ -2,17 +2,18 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const baseConfig = require("./webpack.config.base");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = merge(baseConfig, {
-  devtool: "eval-source-map",
+  devtool: "eval",
   mode: "development",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
+    compress: true, //gzip
     port: 8081,
     historyApiFallback: true,
-    open: true
+    open: true,
+    progress: true
   },
   module: {
     rules: [
@@ -26,13 +27,7 @@ module.exports = merge(baseConfig, {
             loader: "css-loader" // translates CSS into CommonJS modules
           },
           {
-            loader: "postcss-loader", // Run post css actions
-            options: {
-              plugins: function() {
-                // post css plugins, can be exported to postcss.config.js
-                return [require("precss"), require("autoprefixer")];
-              }
-            }
+            loader: "postcss-loader" // Run post css actions
           },
           {
             loader: "sass-loader" // compiles Sass to CSS
@@ -45,7 +40,6 @@ module.exports = merge(baseConfig, {
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("development")
     }),
-    new CleanWebpackPlugin(path.resolve(__dirname, "dist")),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
       title: "Development"
