@@ -1,0 +1,19 @@
+.mw-60p {
+  max-width: 60% !important;
+}
+
+.mw-70p {
+  max-width: 70% !important;
+}
+
+.mh-50p {
+  max-height: 50% !important;
+}
+
+.modal-content {
+  .modal-body {
+    //min-height: calc(100vh - 200px);
+    max-height: calc(100vh -300px);
+    overflow-y: auto;
+  }
+}
