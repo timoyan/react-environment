@@ -7,9 +7,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(baseConfig, {
   mode: "production",
-  entry: "./src/index.js",
   output: {
     filename: "[name].[id].[chunkhash].js",
+    chunkFilename: "[name].[chunkhash].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   module: {
