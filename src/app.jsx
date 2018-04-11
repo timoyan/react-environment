@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Headers from "./components/common/Header";
 import ProductList from "./components/product/ProductList";
 import NewsList from "./components/news/NewsList";
+import Wizard from "./components/common/Wizard";
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
           <Route path="/product" component={ProductList} />
           <Route path="/news" component={NewsList} />
         </Switch>
+        <Wizard />
       </div>
     );
   }
