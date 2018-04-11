@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { Component } from "react";
 
-class ProductCreate extends React.Component{
-    render(){
-        return(
-            "Product Create From Here!"
-        );
-    }
+class ProductCreate extends Component {
+  render() {
+    return "Product Create From Here!";
+  }
 }
 
 export default ProductCreate;

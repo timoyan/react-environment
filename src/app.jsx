@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Route, Switch } from "react-router-dom";
 import Headers from "./components/common/Header";
@@ -8,7 +8,7 @@ import Wizard from "./components/common/Wizard";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "./styles.scss";
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
