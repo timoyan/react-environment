@@ -1,0 +1,29 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body,
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    min-width: 100%;
+    padding: 0px;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: rgb(246, 245, 243);
+}
+
+main {
+    flex: 1;
+}

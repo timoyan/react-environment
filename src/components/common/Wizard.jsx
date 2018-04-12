@@ -1,25 +1,42 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./Wizard.scss";
 
 class Wizard extends Component {
   constructor(props) {
     super(props);
+
+    // const WizardSetting = {
+    //   flow: [
+    //     {
+    //       IndicatorName: "",
+    //       IndicatorComponent: {},
+    //       NextButtonName: ""
+    //     }
+    //   ]
+    // };
+
+    console.log(this.props.WizardSetting);
+
     this.onNext = this.onNext.bind(this);
     this.onPrevious = this.onPrevious.bind(this);
     this.state = {
-      currentIndex: 0,
-      indicators: ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"]
+      currentIndex: 1
     };
   }
 
   componentDidMount() {}
 
   onNext() {
-    this.setState((preState, props) => {
-      if (preState.currentIndex < this.state.indicators.length) {
-        return { currentIndex: preState.currentIndex + 1 };
+    this.setState(
+      (preState, props) => {
+        if (preState.currentIndex < this.props.WizardSetting.flow.length ) {
+          return { currentIndex: preState.currentIndex + 1 };
+        }
+      },
+      () => {
+        console.log(this.state.currentIndex);
       }
-    });
+    );
   }
 
   onPrevious() {
@@ -30,30 +47,57 @@ class Wizard extends Component {
     });
   }
 
-  getIndicatorClass(i) {
-    if (i + 1 <= this.state.currentIndex) {
+  getIndicatorStatus(i) {
+    if (i <= this.state.currentIndex) {
       return "wizard-indicator active";
     } else {
       return "wizard-indicator";
     }
   }
 
+  getComponentActiveStatus(i) {
+    return this.state.currentIndex === i ? "" : "hidden";
+  }
+
+  renderButtons() {
+    const currentFlow = this.props.WizardSetting.flow[this.state.currentIndex];
+
+    if (currentFlow === undefined || currentFlow === null) {
+      return "";
+    }
+
+    return (
+      <Fragment>
+        <button onClick={this.onPrevious}>Back</button>
+        <button onClick={this.onNext}>{currentFlow.NextButtonName}</button>
+        <button onClick={this.props.toogle}>Cancel</button>
+      </Fragment>
+    );
+  }
+
   render() {
     return (
       <div className="wizard-wrapper">
         <div className="wizard-indicators">
-          {this.state.indicators.map((item, index) => {
+          {this.props.WizardSetting.flow.map((item, index) => {
             return (
-              <div key={item} className={this.getIndicatorClass(index)}>
-                <p>{item}</p>
+              <div key={index} className={this.getIndicatorStatus(index)}>
+                {item.IndicatorName}
               </div>
             );
           })}
         </div>
-        <div className="wizard-container" />
+        <div className="wizard-container">
+          {this.props.WizardSetting.flow.map((item, index) => {
+            return (
+              <div key={index} className={this.getComponentActiveStatus(index)}>
+                {item.IndicatorComponent}
+              </div>
+            );
+          })}
+        </div>
         <div className="wizard-bottom">
-          <button onClick={this.onPrevious}>Previous</button>
-          <button onClick={this.onNext}>Next</button>
+          {this.renderButtons()}
         </div>
       </div>
     );

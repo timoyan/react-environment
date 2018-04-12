@@ -29,6 +29,16 @@ module.exports = merge(baseConfig, {
           },
           {
             loader: "sass-loader"
+          },
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: [
+                "./src/base/scss/_variables.scss",
+                "./src/base/scss/_extend.scss",
+                "./src/base/scss/_base.scss"
+              ]
+            }
           }
         ]
       }
