@@ -20,7 +20,7 @@ class Wizard extends Component {
     this.onNext = this.onNext.bind(this);
     this.onPrevious = this.onPrevious.bind(this);
     this.state = {
-      currentIndex: 1
+      currentIndex: 0
     };
   }
 
@@ -29,7 +29,7 @@ class Wizard extends Component {
   onNext() {
     this.setState(
       (preState, props) => {
-        if (preState.currentIndex < this.props.WizardSetting.flow.length ) {
+        if (preState.currentIndex < this.props.WizardSetting.flow.length) {
           return { currentIndex: preState.currentIndex + 1 };
         }
       },
@@ -62,15 +62,27 @@ class Wizard extends Component {
   renderButtons() {
     const currentFlow = this.props.WizardSetting.flow[this.state.currentIndex];
 
-    if (currentFlow === undefined || currentFlow === null) {
-      return "";
-    }
-
     return (
       <Fragment>
-        <button onClick={this.onPrevious}>Back</button>
-        <button onClick={this.onNext}>{currentFlow.NextButtonName}</button>
-        <button onClick={this.props.toogle}>Cancel</button>
+        {(() => {
+          if (
+            this.props.WizardSetting.flow.length >= 1 &&
+            this.state.currentIndex >= 0 &&
+            (currentFlow !== undefined && currentFlow !== null)
+          ) {
+            return <button onClick={this.onPrevious}>Back</button>;
+          }
+        })()}
+        {(() => {
+          if (currentFlow !== undefined && currentFlow !== null) {
+            return (
+              <button onClick={this.onNext}>
+                {currentFlow.NextButtonName}
+              </button>
+            );
+          }
+        })()}
+        <button onClick={this.props.toggle}>Cancel</button>
       </Fragment>
     );
   }
@@ -96,9 +108,7 @@ class Wizard extends Component {
             );
           })}
         </div>
-        <div className="wizard-bottom">
-          {this.renderButtons()}
-        </div>
+        <div className="wizard-bottom">{this.renderButtons()}</div>
       </div>
     );
   }

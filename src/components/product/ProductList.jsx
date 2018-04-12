@@ -5,7 +5,6 @@ import ProductCreate from "./ProductCreate";
 class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.match = props.match;
   }
   render() {
     return (
@@ -19,7 +18,7 @@ class ProductList extends Component {
         <Switch>
           <Route
             exact
-            path={`${this.match.url}/create`}
+            path={`${this.props.match.url}/create`}
             component={ProductCreate}
           />
         </Switch>

@@ -5,14 +5,31 @@ import Headers from "./components/common/Header";
 import ProductList from "./components/product/ProductList";
 import NewsList from "./components/news/NewsList";
 import Wizard from "./components/common/Wizard";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import "./styles.scss";
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    const WizardSetting = {
+      flow: [
+        {
+          IndicatorName: "1",
+          IndicatorComponent: <NewsList />,
+          NextButtonName: "Continus"
+        },
+        {
+          IndicatorName: "2",
+          IndicatorComponent: <NewsList />,
+          NextButtonName: "Continus"
+        }
+      ]
+    };
+
     this.state = {
-      modal: false
+      modal: false,
+      wizardSetting: WizardSetting
     };
 
     this.toggle = this.toggle.bind(this);
@@ -45,16 +62,11 @@ class App extends Component {
           >
             <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
             <ModalBody>
-              <Wizard />
+              <Wizard
+                WizardSetting={this.state.wizardSetting}
+                toggle={() => this.toggle()}
+              />
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.toggle}>
-                Do Something
-              </Button>{" "}
-              <Button color="secondary" onClick={this.toggle}>
-                Cancel
-              </Button>
-            </ModalFooter>
           </Modal>
         </div>
       </div>
