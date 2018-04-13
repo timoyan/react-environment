@@ -1,70 +1,79 @@
 .wizard-wrapper {
-    height: 400px;
+  display: flex;
+  flex-flow: column nowrap;
+  .wizard-indicators {
+    height: 50px;
+    flex: 0 0 50px;
     display: flex;
-    flex-flow: column nowrap;
-    .wizard-indicators {
-        height: 50px;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: flex-start;
-        background-color: gray;
-        .wizard-indicator {
-            height: 100%;
-            flex: 1;
-            position: relative;
-            color: $basic-color-white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            p {
-                margin: 0;
-            }
-            &.active {
-                background-color: #5cb85c !important;
-                border-color: #5cb85c !important;
-            }
-            &.active:not(:last-child)::after {
-                border-left-color: #5cb85c !important;
-            }
-            &:not(:last-child)::before {
-                content: "";
-                display: block;
-                width: 0;
-                height: 0;
-                border-top: 25px solid transparent;
-                /* Go big on the size, and let overflow hide */
-                border-bottom: 25px solid transparent;
-                border-left: 30px solid #ddd;
-                position: absolute;
-                margin-left: 2px;
-                left: 100%;
-                bottom: 0;
-                z-index: 1;
-            }
-            &:not(:last-child)::after {
-                content: " ";
-                display: block;
-                width: 0;
-                height: 0;
-                border-top: 25px solid transparent;
-                border-bottom: 25px solid transparent;
-                border-left: 30px solid gray;
-                position: absolute;
-                left: 100%;
-                bottom: 0;
-                z-index: 2;
-            }
-        }
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: gray;
+    .wizard-indicator {
+      height: 100%;
+      flex: 1;
+      position: relative;
+      color: $basic-color-white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        margin: 0;
+      }
+      &.active {
+        background-color: #5cb85c !important;
+        border-color: #5cb85c !important;
+      }
+      &.active:not(:last-child)::after {
+        border-left-color: #5cb85c !important;
+      }
+      &:not(:last-child)::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 25px solid transparent;
+        /* Go big on the size, and let overflow hide */
+        border-bottom: 25px solid transparent;
+        border-left: 30px solid #ddd;
+        position: absolute;
+        margin-left: 2px;
+        left: 100%;
+        bottom: 0;
+        z-index: 1;
+      }
+      &:not(:last-child)::after {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 30px solid gray;
+        position: absolute;
+        left: 100%;
+        bottom: 0;
+        z-index: 2;
+      }
     }
-    .wizard-container {
-        flex: 1;
-        background-color: lightblue;
+  }
+  .wizard-container {
+    flex: 1;
+    height: 100%;
+    min-height: 300px;
+    .wizard-container-item {
+      height: 100%;
     }
-    .wizard-bottom {
-        flex: 0 0 50px;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: flex-end;
+    padding: 16px;
+  }
+  .wizard-bottom {
+    flex: 0 0 50px;
+    padding: 0px 16px 16px 16px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    button {
+      margin-left: 15px;
     }
+  }
 }

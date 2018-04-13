@@ -56,7 +56,7 @@ class Wizard extends Component {
   }
 
   getComponentActiveStatus(i) {
-    return this.state.currentIndex === i ? "" : "hidden";
+    return this.state.currentIndex === i ? "" : " hidden";
   }
 
   renderButtons() {
@@ -70,19 +70,34 @@ class Wizard extends Component {
             this.state.currentIndex >= 0 &&
             (currentFlow !== undefined && currentFlow !== null)
           ) {
-            return <button onClick={this.onPrevious}>Back</button>;
+            return (
+              <button
+                className="flash-deal-search-filter-option-btn"
+                onClick={this.onPrevious}
+              >
+                Back
+              </button>
+            );
           }
         })()}
         {(() => {
           if (currentFlow !== undefined && currentFlow !== null) {
             return (
-              <button onClick={this.onNext}>
+              <button
+                className="flash-deal-search-filter-option-btn"
+                onClick={this.onNext}
+              >
                 {currentFlow.NextButtonName}
               </button>
             );
           }
         })()}
-        <button onClick={this.props.toggle}>Cancel</button>
+        <button
+          className="flash-deal-search-filter-option-btn"
+          onClick={this.props.toggle}
+        >
+          Cancel
+        </button>
       </Fragment>
     );
   }
@@ -102,13 +117,20 @@ class Wizard extends Component {
         <div className="wizard-container">
           {this.props.WizardSetting.flow.map((item, index) => {
             return (
-              <div key={index} className={this.getComponentActiveStatus(index)}>
+              <div
+                key={index}
+                className={
+                  "wizard-container-item" + this.getComponentActiveStatus(index)
+                }
+              >
                 {item.IndicatorComponent}
               </div>
             );
           })}
         </div>
-        <div className="wizard-bottom">{this.renderButtons()}</div>
+        <div className="wizard-bottom flex-row-nowrap">
+          {this.renderButtons()}
+        </div>
       </div>
     );
   }
