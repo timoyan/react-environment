@@ -15,6 +15,7 @@ This is scaffolding project
 
 ## Structure
 
+```
 +-- dist/
 +-- src/
 | +-- components/
@@ -56,3 +57,4 @@ This is scaffolding project
 +-- webpack.config.base.js
 +-- webpack.config.dev.js
 +-- webpack.config.prod.js
+```
