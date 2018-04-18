@@ -1,4 +1,4 @@
-# react-environment
+# react-redux-environment
 
 This is scaffolding project
 
