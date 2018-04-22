@@ -16,10 +16,7 @@ This is scaffolding project
 ## Structure
 
 ```
-<<<<<<< HEAD
-=======
 +-- dist/
->>>>>>> 9ad4632fb68b1bd825218592d5ca9d438d1eb4ea
 +-- src/
 |   +-- components/
 |	|	+-- textbox/
@@ -66,7 +63,6 @@ This is scaffolding project
 |   |   |   +-- _extend.scss
 |   |   |   +-- _layout.scss
 |   |   |   +-- _variables.scss
-+-- dist/
 +-- .babelrc
 +-- .eslintrc
 +-- package.json
